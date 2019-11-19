@@ -1,6 +1,12 @@
 FROM nvidia/cuda:10.1-devel-ubuntu18.04
 MAINTAINER Harold
 
+# Ignore APT warnings about not having a TTY
+ENV DEBIAN_FRONTEND noninteractive
+
+# Ensure UTF-8 locale
+RUN echo "LANG=\"en_GB.UTF-8\"" > /etc/default/locale
+
 # GCC 9
 RUN apt-get update && apt-get install -y software-properties-common
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test && \
